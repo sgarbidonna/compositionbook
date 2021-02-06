@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Composition Book</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <header class="nav">
+      <ul class="nav navbar-nav">
+        <li>
+          <span> | </span>
+          <%=link_to "MIS BOOKS", books_path%>
+          <span> | </span>
+          <%=link_to "TODAS LAS COMPO-BOOKS", books_path%>
+          <span> | </span>
+          <%=link_to "MIS NOTES", notes_path%>
+        </li>
+      </ul>
+    </header>
+
+
+    <%= yield %>
+  </body>
+</html>

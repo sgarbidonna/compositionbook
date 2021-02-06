@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :set_book, :set_current_user, only: %i[ show edit update destroy ]
 
   # GET /books or /books.json
   def index
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
-
+    
     respond_to do |format|
       format.html # new.html.erb 
       format.json {render json: @book}
@@ -38,9 +38,10 @@ class BooksController < ApplicationController
 
   end
 
+
   # POST /books or /books.json
   def create
-    @book = Book.new(book_params) #(params[:book])
+    @book = Book.new(book_params) 
 
     respond_to do |format|
       if @book.save
@@ -68,6 +69,7 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
+    @book = Book.find(params[:id])
     @book.destroy
     respond_to do |format|
       format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
@@ -81,8 +83,11 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
+    def set_book
+      @current_user=current_user.id
+    end
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :author)
+      params.require(:book).permit(:title, :user, :current_user)
     end
 end

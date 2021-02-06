@@ -12,14 +12,17 @@
   </thead>
 
   <tbody>
+
     <% @books.each do |book| %>
+    <div class="composition-book">
       <tr>
         <td><%= book.title %></td>
-        <td><%= book.author %></td>
+        <td> </td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', book, data: { confirm: 'Are you sure?' },  method: :delete %></td>
       </tr>
+      </div>
     <% end %>
   </tbody>
 </table>
@@ -27,3 +30,5 @@
 <br>
 
 <%= link_to 'New Book', new_book_path %>
+
+<%= button_to "logout", destroy_user_session_path, method: :delete  %>

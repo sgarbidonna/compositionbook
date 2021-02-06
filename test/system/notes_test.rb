@@ -15,7 +15,6 @@ class NotesTest < ApplicationSystemTestCase
     click_on "New Note"
 
     fill_in "Body", with: @note.body
-    fill_in "Book", with: @note.book
     fill_in "Title", with: @note.title
     click_on "Create Note"
 
@@ -28,7 +27,6 @@ class NotesTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Body", with: @note.body
-    fill_in "Book", with: @note.book
     fill_in "Title", with: @note.title
     click_on "Update Note"
 

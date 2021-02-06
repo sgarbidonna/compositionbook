@@ -1,7 +1,7 @@
 body {
-  background-color: #fff;
-  color: #333;
-  margin: 33px; }
+  background: asset_url('compo.jpg') repeat;
+  background-position: center;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -14,14 +14,18 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #000; }
+  color: rgb(0, 0, 0); 
+  text-shadow: rgba(0,0,0,0.4);
+  font-size: 130%;
+}
 
 a:visited {
-  color: #666; }
+  color: rgb(0, 0, 0); }
 
 a:hover {
-  color: #fff;
-  background-color: #000; }
+  color: rgb(0, 0, 0);
+
+}
 
 th {
   padding-bottom: 5px; }
@@ -63,3 +67,45 @@ div.actions {
 
 label {
   display: block; }
+
+.composition-book{
+  background:  asset_url('book-compo.jpg') no-repeat;
+  background-position: center;
+}
+
+.nav{
+  background-color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  border-radius: 2px;
+  
+}
+
+.card-mother{
+  margin:auto;
+  position: absolute;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.card-new{
+  width: 380px;
+  padding: 40px;
+  margin:auto;
+  background: whitesmoke;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 24px -3px rgb(255, 255, 255);
+
+}
+
+.links{
+  width: 80px;
+  padding: 10px;
+  margin:20px auto;
+  background: whitesmoke;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 14px -3px rgb(255, 255, 255);
+}
