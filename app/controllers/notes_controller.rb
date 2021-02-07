@@ -4,6 +4,13 @@ class NotesController < ApplicationController
   # GET /notes or /notes.json
   def index
     @notes = Note.all
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'notes/pdf', pdf: 'Export to PDF'}
+    end
+
   end
 
   # GET /notes/1 or /notes/1.json
@@ -17,11 +24,23 @@ class NotesController < ApplicationController
 
   # GET /notes/1/edit
   def edit
+
+  end
+
+
+  def export
+    byebug
+    @note = Note.find(params[:id])
+
+    respond_to do |format|
+      format.pdf {render template: 'notes/pdf', pdf: 'Exported to PDF'}
+    end
   end
 
   # POST /notes or /notes.json
   def create
-    @note = Note.new(note_params)
+    # byebug
+    @note = Note.new(title: note_params[:title], body: note_params[:body], book_id: Book.find(note_params[:book]).id)
 
     respond_to do |format|
       if @note.save
@@ -37,7 +56,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
     respond_to do |format|
-      if @note.update(note_params)
+      if @note.update(title: note_params[:title], body: note_params[:body], book_id: Book.find(note_params[:book]).id)
         format.html { redirect_to @note, notice: "Note was successfully updated." }
         format.json { render :show, status: :ok, location: @note }
       else
@@ -64,6 +83,6 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:title, :body)
+      params.require(:note).permit(:title, :body, :book, :id)
     end
 end

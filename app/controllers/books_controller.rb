@@ -14,6 +14,7 @@ class BooksController < ApplicationController
   # GET /books/1 or /books/1.json
   def show
     @book = Book.find(params[:id])
+    @book_notes = Note.where(book_id: params[:id]).all()
 
     respond_to do |format|
       format.html # show.html.erb 
@@ -41,7 +42,8 @@ class BooksController < ApplicationController
 
   # POST /books or /books.json
   def create
-    @book = Book.new(book_params) 
+   
+    @book = Book.new(title: book_params[:title], user_id: current_user.id) 
 
     respond_to do |format|
       if @book.save
@@ -51,6 +53,29 @@ class BooksController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+
+  def currentuserbooks
+
+    books = Book.where(user_id: current_user.id).all()
+
+    respond_to do |format|
+      format.html 
+      format.json {render json: @books}
+    end
+  end
+
+  def selecteduserbook
+    byebug
+
+    @books = Book.where(user_id: params[:user_id]).all()
+    byebug
+
+    respond_to do |format|
+      format.html 
+      format.json {render json: @books}
     end
   end
 
@@ -83,11 +108,11 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
-    def set_book
-      @current_user=current_user.id
+    def set_current_user
+      @current_user=current_user
     end
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :user, :current_user)
+      params.require(:book).permit(:title, :user, :current_user, :book_notes, :user_id)
     end
 end

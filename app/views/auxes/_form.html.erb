@@ -1,0 +1,22 @@
+<%= form_with(model: aux) do |form| %>
+  <% if aux.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(aux.errors.count, "error") %> prohibited this aux from being saved:</h2>
+
+      <ul>
+        <% aux.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hola %>
+    <%= form.text_field :hola %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

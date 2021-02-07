@@ -24,7 +24,7 @@
 
   <div class="field">
     <%= form.label :book %>
-    <%= form.collection_select :book_id, Book.all, :id, :title %>
+    <%= form.collection_select :book, Book.all, :id, :title %>
   </div>
 
   <div class="actions">

@@ -1,0 +1,31 @@
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script>
+      function number_pages() {
+        var vars={};
+        var x = document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+</head>
+<body  onload="number_pages()">
+    <%
+=begin%>
+ Page <span class="page"></span> of <span class="topage"></span>
+
+<%
+=end%>
+ 
+    <% @notes.each do |note| %>
+        <h2 >   <%= note.title %> </h2>
+        <h2 >   <%= note.body %> </h2>
+    <%end%>
+
+</body>
+<html>

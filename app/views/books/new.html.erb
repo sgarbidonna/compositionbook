@@ -1,12 +1,17 @@
 <div class="card-mother">
 
     <div class="card-new">
-        <h1>New Book</h1>
+        <h1 class="new-book">New Book</h1>
         <%= render 'form', book: @book %>
     </div>
 
-    <div class="links">
-        <%= link_to 'Back', books_path %>
-    </div>
 
 </div>
+
+
+
+<%=link_to books_path, :action => 'go' do%>
+    <div class="links">
+        BACK
+    </div>
+<%end%>

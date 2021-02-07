@@ -8,26 +8,27 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+  
     <header class="nav">
       <ul class="nav navbar-nav">
         <li>
+
+          <%=link_to "HOME", books_path%>
           <span> | </span>
-          <%=link_to "MIS BOOKS", books_path%>
+          <%=link_to "MY BOOKS", currentuserbooks_books_path%>
+        
           <span> | </span>
-          <%=link_to "TODAS LAS COMPO-BOOKS", books_path%>
-          <span> | </span>
-          <%=link_to "MIS NOTES", notes_path%>
+          <%= link_to 'BYE', destroy_user_session_path, method: :delete  %>
         </li>
       </ul>
+
     </header>
+  
+  </head>
 
-
+  <body>
     <%= yield %>
   </body>
+
+
 </html>

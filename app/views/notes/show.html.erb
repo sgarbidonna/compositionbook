@@ -1,14 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @note.title %>
-</p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @note.body %>
-</p>
+<div class="note-show-wrapper">
+    <div class="note-show">
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+        <strong class="note-title2">  <%= @note.title %></strong>
+        <strong class="note-body">  <%= @note.body %></strong>
+
+    </div>
+</div>
+
+
+
+<%=link_to edit_note_path(@note), :action => 'go' do%>
+    <div class="links-edit-note">
+        EDIT
+    </div>
+<%end%>
+
+<%=link_to book_path(Book.find(@note.book_id)), :action => 'go' do%>
+    <div class="links-book-note">
+        BOOK
+    </div>
+<%end%>
+
+<%=link_to export_notes_path, :id => @note.id, :action => 'go' do%>
+    <div class="links-book-note">
+        EXPORT
+    </div>
+<%end%>
+
+<%=link_to notes_path, :action => 'go' do%>
+    <div class="links">
+        BACK
+    </div>
+<%end%>

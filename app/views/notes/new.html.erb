@@ -5,7 +5,12 @@
         <%= render 'form', note: @note %>
     </div>
 
-    <div class="links">
-        <%= link_to 'Back', notes_path %>
-    </div>
+
 </div>
+
+
+<%=link_to notes_path, :action => 'go' do%>
+    <div class="links">
+        BACK
+    </div>
+<%end%>

@@ -1,5 +1,5 @@
 body {
-  background: asset_url('compo.jpg') repeat;
+  background: asset_url('compo.png') repeat;
   background-position: center;
 }
 
@@ -13,19 +13,19 @@ pre {
   padding: 10px;
   font-size: 11px; }
 
-a {
-  color: rgb(0, 0, 0); 
-  text-shadow: rgba(0,0,0,0.4);
-  font-size: 130%;
-}
+// a {
+//   color: rgb(0, 0, 0); 
+//   text-shadow: rgba(0,0,0,0.4);
+//   font-size: 130%;
+// }
 
-a:visited {
-  color: rgb(0, 0, 0); }
+// a:visited {
+//   color: rgb(0, 0, 0); }
 
-a:hover {
-  color: rgb(0, 0, 0);
+// a:hover {
+//   color: rgb(0, 94, 255);
 
-}
+// }
 
 th {
   padding-bottom: 5px; }
@@ -74,9 +74,10 @@ label {
 }
 
 .nav{
-  background-color: rgba(255, 255, 255, 0.4);
+
   text-align: center;
   border-radius: 2px;
+  font-size: 120%;
   
 }
 
@@ -100,12 +101,35 @@ label {
 
 }
 
+
 .links{
   width: 80px;
-  padding: 10px;
-  margin:20px auto;
+  height: 80px;
+  -webkit-appearance: none;
   background: whitesmoke;
-  text-align: center;
-  border-radius: 20px;
-  box-shadow: 0px 0px 14px -3px rgb(255, 255, 255);
+  box-shadow: 
+  7px 7px 15px rgba(245, 245, 245, 0.5),
+  -7px -7px 15px rgba(240, 240, 240, 0.12);
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  border-radius: 50%;
+  // border: 8px solid whitesmoke;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.links:hover{
+  box-shadow:
+  -10px -10px 15px rgba(31, 31, 31, 0.5),
+  10px 10px 15px rgba(255, 255, 255, 0.12),
+  inset -10px -10px 15px rgba(31, 31, 31, 0.6),
+  inset 10px 10px 15px rgba(31, 31, 31, 0.9);
+  // border: 8px solid rgba(31, 31, 31, 0.9);
+}
+.new-book{
+  font-family: asset_url('bouldersbeachPersonalUse.ttf') ;
+  font-size: 400%;
 }
