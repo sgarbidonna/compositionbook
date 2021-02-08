@@ -1,28 +1,50 @@
+
+
 <%= stylesheet_link_tag 'books', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <p id="notice"><%= notice %></p>
 
-<section class="books-index">
-  <div class="books-wrapper">
-    <% @books.each do |book| %>
+
+<div class="username-selecteduserbooks">
+  My Composition Books:
+</div>
+
+
+<% @books.each do |book| %>
+  <div class="book-wrapper">
 
     <%=link_to book, :action => 'go' do%>
-      <div id="img-book">
-        <h2 class="book-title">     <%= book.title %> </h2>
+      <div id="img-book2">
+        <% if book.private %>
+          <h2 class="book-title-private"> <%= book.title %> </h2>
+        <% else %>
+          <h2 class="book-title"> <%= book.title %> </h2>
+        <% end %>
       </div>
     <%end%>
 
+    <section class="notes-index">
+      <div class="notes-wrapper">
+        <% notes = Note.where(book_id: book.id)%>
+        <% notes.each do |note| %>
+          <%=link_to note, :action => 'go' do%>
+            <div id="img-note">
+              <h2 class="note-title">
+              <%= note.title %>
+              </h2>
+            </div>
+          <%end%>
+        <% end %>
 
-  <!--
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, data: { confirm: 'Are you sure?' },  method: :delete %></td>
-  -->
-      
-    <% end %>
+      </div>
+    </section>
   </div>
-</section>
+
+  <br />
+
+<% end %>
 
 <%=link_to new_book_path, :action => 'go' do%>
-  <h2 class=newbook> + </h2>
+  <h2 class=link-new-book> + </h2>
 <%end%>
+

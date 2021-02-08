@@ -1,22 +1,21 @@
-<h1>Editing Note</h1>
 
-<div class="card-mother">
-    <div class="card-new">
-        <h1>New Note</h1>
-        <%= render 'form', note: @note %>
+    <div class="card-mother">
+        <div class="card-new">
+            <h1>New Note</h1>
+            <%= render 'form', note: @note %>
+        </div>
+
+
     </div>
 
+    <%=link_to @note, :action => 'go' do%>
+        <div class="links-show-notes">
+            SHOW
+        </div>
+    <%end%>
 
-</div>
-
-<%=link_to @note, :action => 'go' do%>
-    <div class="links-show-notes">
-        SHOW
-    </div>
-<%end%>
-
-<%=link_to notes_path, :action => 'go' do%>
-    <div class="links">
-        BACK
-    </div>
-<%end%>
+    <%=link_to notes_path, :action => 'go' do%>
+        <div class="links">
+            BACK
+        </div>
+    <%end%>

@@ -1,11 +1,10 @@
 module ApplicationHelper
 
-    # def is_number?(n)
 
-    #     if n=~ /^\d+$/
-    #         false
-    #     else
-    #         true
-    #     end
-    # end
+    def get_current_user_id
+        current_user.id
+    end
+
+
+
 end

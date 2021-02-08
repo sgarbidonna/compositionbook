@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   resources :auxes
   devise_for :users
-  resources :users
+
+  resources :users do
+    collection do
+      patch 'update_password'
+    end
+  end
 
   resources :notes do
     collection do
@@ -17,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :exportnotes, path: 'exportnotes/:id'
 
   root :to => 'books#index'
 

@@ -1,21 +1,40 @@
 <%= stylesheet_link_tag 'books', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <p id="notice"><%= notice %></p>
+<div class="username-selecteduserbooks">
+  <%book=@books.first()%>
+  <%= User.find(book.user_id).email%> :
+</div>
+<% @books.each do |book| %>
+<% if !book.private %>
+    <div class="book-wrapper">
 
-<section class="books-index">
-  <div class="books-wrapper">
-    <% @books.each do |book| %>
+      <%=link_to book, :action => 'go' do%>
+        <div id="img-book2">
+          <h2 class="book-title"> <%= book.title %> </h2>
+        </div>
+      <%end%>
 
-    <%=link_to book, :action => 'go' do%>
-      <div id="img-book">
-        <h2 class="book-title">     <%= book.title %> </h2>
-      </div>
-    <%end%>
+      <section class="notes-index">
+        <div class="notes-wrapper">
+          <% notes = Note.where(book_id: book.id)%>
+          <% notes.each do |note| %>
+            <%=link_to note, :action => 'go' do%>
+              <div id="img-note">
+                <h2 class="note-title">
+                <%= note.title %>
+                </h2>
+              </div>
+            <%end%>
+          <% end %>
+          
+        </div>
+      </section>
+    </div>
 
-      
-    <% end %>
-  </div>
-</section>
+    <br />
+<% end %>
+<% end %>
 
 <%=link_to new_book_path, :action => 'go' do%>
   <h2 class=newbook> + </h2>

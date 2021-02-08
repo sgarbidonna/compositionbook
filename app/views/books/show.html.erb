@@ -2,15 +2,25 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="book-title-show"> <%= @book.title %> </div>
 
 
+<%if book_is_mine?(@book.id)%>
+
+  <%if @book.private%>
+    <h2 class="book-title-show-private">     <%= @book.title %> </h2>
+  <%else%>
+    <h2 class="book-title-show">     <%= @book.title %> </h2>
+  <%end%>
+
+<%else%>
+  <div class="book-title-show"> <%= @book.title %> </div>
+<%end%>
 
 <% if book_is_mine?(@book.id)%>
 
 <% else %>
-
-  <%=link_to selecteduserbooks_books_path, 'user_id' => @book.user_id,  :action => 'go' do%>
+  <%= @book.try(:user_id)%>
+  <%=link_to selecteduserbooks_books_path(user_id: @book.user_id),  :action => 'go' do%>
       <div class="links-user-book">
           BY: <%= User.find(@book.user_id).email%>
       </div>
@@ -36,20 +46,19 @@
 
 
 <% if book_is_mine?(@book.id) %>
-  <%=link_to new_note_path, :action => 'go' do%>
-      <div class="links-new-note">
-        +
-      </div>
-  <%end%>
 
   <%=link_to new_note_path, :action => 'go' do%>
-      <div class="links-delete-book">
+      <h2 class=link-new-note> + </h2>
+  <%end%>
+
+  <%=link_to book_path, :method => :delete, :action => 'go' do%>
+      <h2 class="link-delete-book">
         DELETE
-      </div>
+      </h2>
   <%end%>
 
   <%=link_to edit_book_path(@book), :action => 'go' do%>
-      <div class="links-edit-book">
+      <div class="link-edit-book">
           EDIT
       </div>
   <%end%>
@@ -57,7 +66,7 @@
 <% end %>
 
 <%=link_to books_path, :action => 'go' do%>
-    <div class="links">
+    <div class="link-back-show-book">
         BACK
     </div>
 <%end%>

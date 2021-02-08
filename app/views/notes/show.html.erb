@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
 <div class="note-show-wrapper">
     <div class="note-show">
 
@@ -10,28 +9,24 @@
     </div>
 </div>
 
-
-
 <%=link_to edit_note_path(@note), :action => 'go' do%>
-    <div class="links-edit-note">
+    <div class="link-edit-note">
         EDIT
     </div>
 <%end%>
 
-<%=link_to book_path(Book.find(@note.book_id)), :action => 'go' do%>
-    <div class="links-book-note">
-        BOOK
-    </div>
-<%end%>
+<% @note.try(:id)%>
+<% @note.try(:format)%>
 
-<%=link_to export_notes_path, :id => @note.id, :action => 'go' do%>
-    <div class="links-book-note">
+ <%=link_to export_notes_path(id: @note.id, format: 'pdf'), :action => 'go' do%>
+    <div class="link-export-note">
         EXPORT
     </div>
-<%end%>
+<%end%> 
+
 
 <%=link_to notes_path, :action => 'go' do%>
-    <div class="links">
-        BACK
+    <div class="link-book-show-notes">
+        BOOK
     </div>
 <%end%>

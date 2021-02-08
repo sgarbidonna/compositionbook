@@ -24,7 +24,8 @@
 
   <div class="field">
     <%= form.label :book %>
-    <%= form.collection_select :book, Book.all, :id, :title %>
+    <% user_id = get_current_user_id %>
+    <%= form.collection_select :book, Book.where(user_id: user_id), :id, :title, {:selected => @note.book_id}%>
   </div>
 
   <div class="actions">

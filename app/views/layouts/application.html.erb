@@ -12,13 +12,27 @@
     <header class="nav">
       <ul class="nav navbar-nav">
         <li>
+          
+          <% user_id = get_current_user_id %>
+          <%=link_to user_path(user_id) , :action => 'go' do%>
+              <span class="username-nav"> <%= User.find(user_id).username %> </span>
+          <%end%>
 
-          <%=link_to "HOME", books_path%>
-          <span> | </span>
-          <%=link_to "MY BOOKS", currentuserbooks_books_path%>
-        
-          <span> | </span>
-          <%= link_to 'BYE', destroy_user_session_path, method: :delete  %>
+          <span class="barra-separadora"> | </span>
+          <%=link_to books_path, :action => 'go' do%>
+              <span class="username-nav"> HOME </span>
+          <%end%>
+
+          <span class="barra-separadora"> | </span>
+          <%=link_to currentuserbooks_books_path, :action => 'go' do%>
+              <span class="username-nav"> My BOOKS </span>
+          <%end%>
+          
+          <span class="barra-separadora"> | </span>
+          <%=link_to destroy_user_session_path, method: :delete , :action => 'go' do%>
+              <span class="username-nav"> BYE </span>
+          <%end%>
+          
         </li>
       </ul>
 

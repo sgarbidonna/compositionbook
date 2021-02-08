@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
     before_action :authenticate_user!
+    before_action :update_allowed_parameters, if: :devise_controller?
 
-    # layout :layout_to_render
+    protected
+    def update_allowed_parameters
+      devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :email, :password)}
+      devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password, :current_password)}
+    end
 
-    # def layout_to_render
-    #     if devise_controller?
-    #         'devise'
-    #     else
-    #         'application'
-    #     end
-    # end
+
+
+
 end

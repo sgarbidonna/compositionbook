@@ -7,22 +7,31 @@
     <% @books.each do |book| %>
 
     <%=link_to book, :action => 'go' do%>
-      <div id="img-book">
-        <h2 class="book-title">     <%= book.title %> </h2>
-      </div>
+      <%if book_is_mine?(book.id)%>
+        
+        <div id="img-book">
+          <%if book.private%>
+              <h2 class="book-title-private">     <%= book.title %> </h2>
+          <%else%>
+            <h2 class="book-title">     <%= book.title %> </h2>
+          <%end%>
+        </div>
+
+      <%else%>
+
+          <%if !book.private%>
+            <div id="img-book">
+              <h2 class="book-title">     <%= book.title %> </h2>
+            </div>
+          <%end%>
+        
+      <%end%>
     <%end%>
 
-
-  <!--
-        <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, data: { confirm: 'Are you sure?' },  method: :delete %></td>
-  -->
-      
     <% end %>
   </div>
 </section>
 
 <%=link_to new_book_path, :action => 'go' do%>
-  <h2 class=newbook> + </h2>
+  <h2 class=link-new-book> + </h2>
 <%end%>

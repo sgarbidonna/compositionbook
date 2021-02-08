@@ -1,0 +1,51 @@
+body {
+    background: whitesmoke;
+
+}
+.show-profile{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.username-tag{
+    background: asset_url('tag-compo.png') no-repeat;
+    background-size: contain;
+    height: 199px;
+    width: 318px;
+    margin: 30px;
+    text-align: center;
+    justify-content: center;
+    
+}
+
+.username-title{
+    font-family: 'Script';
+    color: rgb(67, 83, 255);
+    padding-top: 23%;
+    margin-left: auto;
+    font-size: 600%;
+    justify-content: center;
+    line-height: 30px;
+    overflow: hidden;
+    word-break:break-all;
+    white-space:normal;
+    display: flex;
+    line-height: 50px;  
+}
+
+.datos-profile{
+    display: flex;
+    margin-top: 60px;
+    margin-left: 30px;
+    border-radius: 3px solid rgb(255, 104, 104);
+
+}
+
+.new-password{
+    display: flex;
+    margin-top: 60px;
+    margin-left: 30px;
+    border-radius: 3px;
+    border-color: rgb(255, 104, 104);
+}

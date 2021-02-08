@@ -8,7 +8,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf {render template: 'notes/pdf', pdf: 'Export to PDF'}
+      # format.pdf {render template: 'notes/pdf', pdf: 'Export to PDF'}
     end
 
   end
@@ -29,12 +29,14 @@ class NotesController < ApplicationController
 
 
   def export
-    byebug
+
     @note = Note.find(params[:id])
+    @book = Book.find(@note.book_id)
 
     respond_to do |format|
-      format.pdf {render template: 'notes/pdf', pdf: 'Exported to PDF'}
+      format.pdf { render template: 'notes/pdf', pdf: 'Exported to PDF' }
     end
+
   end
 
   # POST /notes or /notes.json
@@ -83,6 +85,6 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:title, :body, :book, :id)
+      params.require(:note).permit(:title, :body, :book, :id, :format)
     end
 end

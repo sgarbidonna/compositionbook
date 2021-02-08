@@ -1,28 +1,32 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :you_shall_not_pass?
 
   # GET /users or /users.json
   def index
     @users = User.all
+    render "show"
   end
 
   # GET /users/1 or /users/1.json
   def show
+    
   end
 
   # GET /users/new
   def new
+
     @user = User.new
   end
 
   # GET /users/1/edit
   def edit
+    @user= current_user
   end
 
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "User was successfully created." }
@@ -41,9 +45,20 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_password
+    @user = User.find(current_user.id)
+
+    if @user.update(user_params)
+      sign_in @user, :bypass => true
+      redirect_to root_path
+    else
+      render "show"
     end
   end
 
@@ -62,8 +77,14 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def you_shall_not_pass?
+      unless params[:id].to_i == current_user.id
+          redirect_to books_path
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :password, :id, :username)
+      params.require(:user).permit(:email, :password, :password_confirmation, :id, :username)
     end
 end

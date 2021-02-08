@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
+
     @books = Book.all
 
     respond_to do |format|
@@ -43,7 +44,7 @@ class BooksController < ApplicationController
   # POST /books or /books.json
   def create
    
-    @book = Book.new(title: book_params[:title], user_id: current_user.id) 
+    @book = Book.new(private: book_params[:private],title: book_params[:title], user_id: current_user.id) 
 
     respond_to do |format|
       if @book.save
@@ -58,8 +59,7 @@ class BooksController < ApplicationController
 
 
   def currentuserbooks
-
-    books = Book.where(user_id: current_user.id).all()
+    @books = Book.where(user_id: current_user.id)
 
     respond_to do |format|
       format.html 
@@ -67,11 +67,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def selecteduserbook
-    byebug
+  def selecteduserbooks
 
-    @books = Book.where(user_id: params[:user_id]).all()
-    byebug
+    @books = Book.where(user_id: params[:user_id])
 
     respond_to do |format|
       format.html 
@@ -94,6 +92,7 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
+
     @book = Book.find(params[:id])
     @book.destroy
     respond_to do |format|
@@ -113,6 +112,6 @@ class BooksController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:title, :user, :current_user, :book_notes, :user_id)
+      params.require(:book).permit(:title, :user, :current_user, :book_notes, :user_id, :private)
     end
 end

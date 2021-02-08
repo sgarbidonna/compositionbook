@@ -1,2 +1,0 @@
-class Aux < ApplicationRecord
-end
