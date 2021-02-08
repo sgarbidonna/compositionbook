@@ -3,11 +3,9 @@
     <%= form_with(model: book) do |form| %>
       <% if book.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
-
           <ul>
             <% book.errors.each do |error| %>
-              <li><%= error.full_message %></li>
+              <p><%= error.full_message %></p>
             <% end %>
           </ul>
         </div>

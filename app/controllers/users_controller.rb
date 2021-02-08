@@ -10,12 +10,10 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    
   end
 
   # GET /users/new
   def new
-
     @user = User.new
   end
 
@@ -52,13 +50,16 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    @user = User.find(current_user.id)
+
+    @user = current_user
 
     if @user.update(user_params)
+      # Sign in the user by passing validation in case their password changed
       sign_in @user, :bypass => true
-      redirect_to root_path
+      redirect_to books_path
     else
-      render "show"
+
+      redirect_to user_path(@user.id), notice:"Las contraseñas no coinciden o tienen menos de 6 caracteres"
     end
   end
 
@@ -78,8 +79,15 @@ class UsersController < ApplicationController
     end
 
     def you_shall_not_pass?
-      unless params[:id].to_i == current_user.id
+      if params[:action]=="update_password"
+        unless params[:user][:id].to_i== current_user.id
+          byebug
           redirect_to books_path
+        end
+      else
+        unless params[:id].to_i== current_user.id
+          redirect_to books_path
+        end
       end
     end
 

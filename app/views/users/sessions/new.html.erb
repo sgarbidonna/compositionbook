@@ -2,13 +2,14 @@
 
 
 <div class="card-mother">
-<%= render "users/shared/error_messages", resource: resource %>
+
 
   <div class="card-log">
     <h2>Ingresá al sitio</h2>
   <br/> <br/>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
       <div class="field">
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
